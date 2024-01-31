@@ -13,7 +13,12 @@ const Modal = ({ children }) => {
     return () => modalRoot.removeChild(elRef.current);
   }, []);
 
-  return createPortal(<div>{children}</div>, elRef.current);
+  return createPortal(
+    <div className="max-w-lg rounded-3xl bg-white p-4 text-center">
+      {children}
+    </div>,
+    elRef.current
+  );
 };
 
 export default Modal;

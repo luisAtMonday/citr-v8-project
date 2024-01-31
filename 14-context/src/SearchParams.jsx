@@ -20,8 +20,9 @@ const SearchParams = () => {
   const pets = results?.data?.pets ?? [];
 
   return (
-    <div className="search-params">
+    <div className="my-0 mx-auto w-11/12">
       <form
+        className="float-left mb-6 w-3/12 rounded-md bg-red-100 px-4 pt-9 pb-4 shadow-lg"
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
@@ -34,13 +35,23 @@ const SearchParams = () => {
         }}
       >
         {adoptedPet ? (
-          <div className="pet image-container">
-            <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+          <div className="image-container float-left mt-0 mb-5 ml-0 mr-2.5 h-24 w-24 overflow-hidden border-b-2 border-solid border-gray-800">
+            <img
+              className="pet-image"
+              src={adoptedPet.images[0]}
+              alt={adoptedPet.name}
+            />
           </div>
         ) : null}
         <label htmlFor="location">
           Location
-          <input id="location" name="location" placeholder="Location" />
+          <input
+            type="text"
+            id="location"
+            name="location"
+            placeholder="Location"
+            className="search-input"
+          />
         </label>
 
         <label htmlFor="animal">
@@ -48,6 +59,7 @@ const SearchParams = () => {
           <select
             id="animal"
             name="animal"
+            className="search-input"
             onChange={(e) => {
               setAnimal(e.target.value);
             }}
@@ -66,7 +78,12 @@ const SearchParams = () => {
 
         <label htmlFor="breed">
           Breed
-          <select disabled={!breeds.length} id="breed" name="breed">
+          <select
+            disabled={!breeds.length}
+            id="breed"
+            name="breed"
+            className="search-input grayed-out-disabled"
+          >
             <option />
             {breeds.map((breed) => (
               <option key={breed} value={breed}>
@@ -76,7 +93,9 @@ const SearchParams = () => {
           </select>
         </label>
 
-        <button>Submit</button>
+        <button className="rounded border-none bg-orange-500 px-6 py-2 text-white hover:opacity-50">
+          Submit
+        </button>
       </form>
       <Results pets={pets} />
     </div>
